@@ -1,8 +1,8 @@
 import express from "express";
 const app = express();
 import { credentials } from "./config/credentials.js";
-
-
+import { dbConnection } from "./config/dbConnection.js";
+dbConnection()
 
 
 
