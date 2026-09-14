@@ -18,7 +18,7 @@ export async function dbConnection() {
         await sequelize.authenticate();
         console.log("MySql conneced successfully");
 
-        await sequelize.sync({alter: false});
+        await sequelize.sync({alter: true});
         console.log("Sequelize syncked successfully")
         
     } catch (error) {

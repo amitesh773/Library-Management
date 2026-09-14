@@ -1,11 +1,19 @@
-import express from "express";
+import express, { urlencoded } from "express";
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
 import { credentials } from "./config/credentials.js";
 import { dbConnection } from "./config/dbConnection.js";
 dbConnection()
 
+// Model 
+import "./models/user.js"
+
+import auth from "./modules/routers/authRouter.js";
 
 
+app.use("/auth",auth)
 
 
 
