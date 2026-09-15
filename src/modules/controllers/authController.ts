@@ -3,11 +3,11 @@ import { ServerError } from "../../common/response.js";
 import { authValidation } from "../../validation/authValidation.js";
 import User from "../../models/user.js";
 import bcrypt from "bcrypt"
-import { json, Op } from "sequelize";
+import { Op } from "sequelize";
 import JWT from "jsonwebtoken"
 import { credentials } from "../../config/credentials.js";
 import type { authRequest } from "../../middleware/authMiddleware.js";
-import { join } from "path";
+import { sendSingupconfirmationMail } from "../../utils/sendMail.js";
 
 export const singup = async (req: Request, res: Response) => {
   try {
@@ -75,6 +75,11 @@ export const singup = async (req: Request, res: Response) => {
       phone,
       password: hashPassword,
     })
+
+    sendSingupconfirmationMail(
+      user.email,
+      user.name
+    )
 
     return res.status(201).json({
       success: true,
