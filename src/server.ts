@@ -9,12 +9,13 @@ dbConnection()
 
 // Model 
 import "./models/user.js"
+import "./models/book.js"
 
 import auth from "./modules/routers/authRouter.js";
-
+import book from "./modules/routers/bookRouter.js"
 
 app.use("/auth",auth)
-
+app.use("/book", book)
 
 
 app.listen(credentials.PORT, ()=>{

@@ -10,3 +10,11 @@ export enum UserRole {
   TEACHER = "TEACHER",
   STUDENT = "STUDENT"
 }
+
+export enum BookStatus {
+  AVAILABLE = "AVAILABLE",
+  ISSUED = "ISSUED",
+  DAMAGED = "DAMAGED",
+  LOST = "LOST",
+  UNDER_MAINTENANCE = "UNDER_MAINTENANCE",
+}
