@@ -7,6 +7,11 @@ export const authValidation = Joi.object({
         .max(12)
         .required(),
 
+        surname: Joi.string()
+        .min(3)
+        .max(12)
+        .required(),
+
         phone: Joi.string()
         .min(10)
         .max(10)

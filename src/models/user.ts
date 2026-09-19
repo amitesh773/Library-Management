@@ -1,15 +1,16 @@
 import { DataTypes, Model, type Optional } from "sequelize";
 import { sequelize } from "../config/dbConnection.js";
-import { UserStatus, UserRole } from "../common/status.js";
+import { Status, UserRole } from "../common/status.js";
 
 interface userAttributs {
   id: number,
   name: string,
+  surname: string,
   email: string,
   phone: string,
   password: string,
   role: UserRole,
-  status: UserStatus
+  status: Status
   createdAt: Date,
   updatedAt: Date,
   createdBy: number,
@@ -21,6 +22,7 @@ interface userCreationAttributs extends Optional<
   userAttributs,
   "id" |
   "name" |
+  "surname"|
   "email" |
   "phone" |
   "password" |
@@ -37,11 +39,12 @@ class User
   implements userAttributs {
   declare id: number;
   declare name: string;
+  declare surname: string;
   declare email: string;
   declare phone: string;
   declare password: string;
   declare role: UserRole;
-  declare status: UserStatus;
+  declare status: Status;
   declare createdAt: Date;
   declare updatedAt: Date;
   declare createdBy: number;
@@ -57,6 +60,10 @@ User.init(
       autoIncrement: true,
     },
     name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    surname: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -79,9 +86,9 @@ User.init(
 
     },
     status: {
-      type: DataTypes.ENUM(...Object.values(UserStatus)),
+      type: DataTypes.ENUM(...Object.values(Status)),
       allowNull: true,
-      defaultValue: UserStatus.ACTIVE
+      defaultValue: Status.ACTIVE
     },
     createdAt: {
       type: DataTypes.DATE,

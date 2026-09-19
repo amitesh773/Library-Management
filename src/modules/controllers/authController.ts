@@ -21,7 +21,7 @@ export const singup = async (req: Request, res: Response) => {
       })
     }
 
-    const { name, email, phone, password } = req.body;
+    const { name, surname, email, phone, password } = req.body;
 
     const userData = await User.findOne({
       where: {
@@ -71,6 +71,7 @@ export const singup = async (req: Request, res: Response) => {
 
     const user = await User.create({
       name,
+      surname,
       email,
       phone,
       password: hashPassword,
@@ -87,6 +88,7 @@ export const singup = async (req: Request, res: Response) => {
       data: {
         id: user.id,
         name: user.name,
+        surname: user.surname,
         email: user.email,
         phone: user.phone,
         role: user.role,
@@ -116,6 +118,7 @@ export const login = async (req: Request, res: Response) => {
       attributes: [
         "id",
         "name",
+        "surname",
         "email",
         "phone",
         "password",
@@ -170,6 +173,7 @@ export const profile = async (req: authRequest, res: Response) => {
         attributes: [
           "id",
           "name",
+          "surname",
           "email",
           "phone",
           "role",
