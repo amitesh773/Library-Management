@@ -4,13 +4,14 @@ import { credentials } from "../config/credentials.js";
 export const sendSingupconfirmationMail = async (
   email: string,
   name: string,
+  surname: string,
 ) => {
   const info = await transporter.sendMail({
     from: credentials.MAIL_FROM,
     to: email,
     subject: "Library Management - singup confirmation ",
     html: `
-      <h2>Welcome ${name}! 🎉</h2>
+      <h2>Welcome ${name}! ${surname} 🎉</h2>
 
       <p>
           Your Library Management account has been successfully created.

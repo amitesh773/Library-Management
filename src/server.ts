@@ -10,12 +10,15 @@ dbConnection()
 // Model 
 import "./models/user.js"
 import "./models/book.js"
+import "./models/teacher.js"
 
 import auth from "./modules/routers/authRouter.js";
 import book from "./modules/routers/bookRouter.js";
+import student from "./modules/routers/studentRouter.js"
 
 app.use("/auth",auth)
 app.use("/book", book)
+app.use("/student",student)
 
 
 app.listen(credentials.PORT, ()=>{
